@@ -1,90 +1,99 @@
-# ⚡ Student Profiling System - Brutalist Edition ⚡
+# Student Profiling System
 
 ![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Expo](https://img.shields.io/badge/expo-1C1E24?style=for-the-badge&logo=expo&logoColor=#D04A37)
 ![Laravel](https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white)
 
-Welcome to the **Student Profiling System**! This isn't your average, boring school application. Designed with a **Neobrutalism** aesthetic—bold borders, high contrast, and aggressive drop shadows—this app makes managing student portfolios and certifications look incredibly cool and modern.
+The **Student Profiling System** is a comprehensive platform designed to manage and showcase student achievements, portfolios, and academic records. This project stands out by utilizing a **Neobrutalism Design System**, offering a bold, high-contrast, and highly interactive user experience that distinguishes it from conventional academic applications.
 
-## ✨ Fitur Utama (What makes this cool?)
-- **🔥 Brutalist UI/UX:** Tampilan anti-mainstream yang mencolok, *edgy*, dan punya karakter kuat.
-- **📱 Smooth Drawer Navigation:** Animasi menu geser (slide-in overlay) yang interaktif dan memanjakan mata.
-- **📂 Manajemen Portofolio & Sertifikasi:** Catat dan pamerkan pencapaianmu dengan bangga (dilengkapi fitur *Public View* tanpa perlu login!).
-- **🔗 Integrasi Sosial Media:** Tautkan GitHub, LinkedIn, dan Instagram langsung ke profilmu untuk *networking*.
-- **🛡️ Secure REST API:** Dibekingi oleh ketangguhan framework Laravel di sisi server.
+## 🌟 Key Features
 
----
-
-## 🛠️ Tech Stack
-- **Frontend:** React Native, Expo, Expo Router
-- **Backend:** PHP, Laravel 11, MySQL
-- **State/Storage:** React `useState`, AsyncStorage
+- **Neobrutalist User Interface:** A unique, high-contrast design language featuring bold typography, strong borders, and solid drop shadows for maximum accessibility and visual impact.
+- **Custom Drawer Navigation:** A fluid, custom-built slide-over menu system that maintains state seamlessly without unmounting the main dashboard.
+- **Portfolio & Certification Management:** Students can easily upload, categorize, and showcase their projects and certifications.
+- **Public View Showcase:** A dedicated public route allowing external visitors to view student portfolios without requiring authentication.
+- **Social Media Integration:** Seamless integration with GitHub, LinkedIn, and Instagram to build a comprehensive professional profile.
+- **Robust REST API:** A secure and scalable backend architecture powered by Laravel 11.
 
 ---
 
-## 🚀 Cara Instalasi & Menjalankan Aplikasi
+## 💻 Tech Stack
 
-Aplikasi ini terbagi menjadi dua bagian: **Backend (Laravel)** dan **Frontend (React Native/Expo)**. Ikuti langkah di bawah ini untuk menjalankan semuanya di mesin lokalmu!
+### Frontend (Mobile)
+- **Framework:** React Native with Expo
+- **Routing:** Expo Router (File-based routing)
+- **State Management & Storage:** React Hooks, AsyncStorage
+- **Styling:** Custom Neobrutalism UI Components
 
-### 🟢 Tahap 1: Setup Backend (Laravel)
-Pastikan kamu sudah menginstal PHP, Composer, dan MySQL (bisa pakai XAMPP/Laragon).
+### Backend (API)
+- **Framework:** Laravel 11 (PHP)
+- **Database:** MySQL
+- **Authentication:** Laravel Sanctum / Token-based Auth
 
-1. Buka terminal dan masuk ke folder backend:
+---
+
+## 🚀 Installation & Setup Guide
+
+To run this project locally, you will need to set up both the Laravel Backend and the React Native Frontend.
+
+### Prerequisites
+- PHP >= 8.2 & Composer
+- MySQL Database
+- Node.js & npm
+- Expo CLI (`npm install -g expo-cli`)
+- Expo Go App (installed on your mobile device) or an Emulator
+
+### Part 1: Backend Setup (Laravel)
+1. Navigate to the backend directory:
    ```bash
    cd ProfilingSiswa
    ```
-2. Instal semua *dependency* PHP:
+2. Install PHP dependencies:
    ```bash
    composer install
    ```
-3. Salin file konfigurasi env, lalu atur koneksi databasemu:
+3. Configure the environment variables:
    ```bash
    cp .env.example .env
    ```
-   *Edit file `.env`, pastikan `DB_DATABASE` sesuai dengan nama database kosong yang sudah kamu buat di MySQL.*
-4. *Generate app key* dan jalankan migrasi database:
+   *Open the `.env` file and update the `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD` fields to match your local MySQL configuration.*
+4. Generate the application key and migrate the database:
    ```bash
    php artisan key:generate
    php artisan migrate:fresh --seed
    ```
-   *(Catatan: `--seed` akan otomatis memasukkan data dummy agar kamu langsung punya user untuk ujicoba login).*
-5. Jalankan server Laravel:
+   *(Note: The `--seed` flag will populate the database with initial dummy data for testing purposes).*
+5. Serve the API locally:
    ```bash
    php artisan serve --host=0.0.0.0 --port=8000
    ```
-   > **Penting:** Gunakan `--host=0.0.0.0` agar API bisa diakses dari jaringan lokal (HP atau Emulator) melalui IP Address komputermu.
+   > **Crucial:** Using `--host=0.0.0.0` ensures the API is accessible across your local network, which is required when connecting from a mobile device or emulator.
 
-### 🟠 Tahap 2: Setup Frontend (React Native / Expo)
-Pastikan kamu sudah menginstal Node.js dan aplikasi Expo Go di HP kamu (atau bisa pakai Emulator Android/iOS).
-
-1. Buka terminal baru dan masuk ke folder frontend:
+### Part 2: Frontend Setup (React Native)
+1. Open a new terminal instance and navigate to the frontend directory:
    ```bash
    cd APIProfilingSiswa
    ```
-2. Instal semua *dependency* NPM:
+2. Install JavaScript dependencies:
    ```bash
    npm install
    ```
-3. **Konfigurasi Alamat IP (PENTING!):**
-   Cari file tempat `API_URL` dideklarasikan (biasanya di file seperti `app/(tabs)/Home.tsx` atau `app/Start/Login.tsx`), dan pastikan IP-nya mengarah ke **IP Address komputermu (IPv4)**, BUKAN `localhost`.
-   Contoh: 
+3. **Configure the API Endpoint:**
+   Locate the file where the API URL is defined (e.g., `app/(tabs)/Home.tsx` or `app/Start/Login.tsx`). Update the `API_URL` variable to point to your computer's local IP address (IPv4) instead of `localhost`.
    ```typescript
-   const API_URL = 'http://192.168.1.5:8000/api'; // Ganti dengan IP kamu
+   // Example
+   const API_URL = 'http://192.168.x.x:8000/api'; 
    ```
-4. Jalankan aplikasi Expo:
+4. Start the Expo development server:
    ```bash
    npx expo start
    ```
-   *atau*
-   ```bash
-   npm start
-   ```
-5. **Scan QR Code** yang muncul di terminal menggunakan aplikasi Expo Go di HP kamu. Voila! Aplikasi siap untuk dijelajahi!
+5. Scan the QR Code generated in the terminal using the **Expo Go** app on your smartphone to launch the application.
 
 ---
 
-## 🤝 Kontribusi (Let's make it more brutal!)
-Punya ide gila untuk membuat desainnya lebih "Brutal" atau ingin menambah fitur baru? Silakan *fork* repository ini, buat *branch* baru, dan ajukan *Pull Request*. Segala bentuk kontribusi sangat kami hargai!
+## 🤝 Contributing
+Contributions, issues, and feature requests are welcome. Feel free to check the issues page if you want to contribute.
 
----
-*Dibuat dengan ☕ dan 🖤 untuk ekosistem pendidikan yang lebih baik.*
+## 📄 License
+This project is open-source and available under the [MIT License](LICENSE).
